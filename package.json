@@ -1,0 +1,12 @@
+{
+  "name": "web2-security",
+  "private": true,
+  "scripts": {
+    "start": "node api/index.js",
+    "dev": "node --env-file=.env api/index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
