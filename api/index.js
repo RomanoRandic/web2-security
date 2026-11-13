@@ -193,8 +193,7 @@ app.get('/xss', async (req, res) => {
       <textarea name="body" rows="3" cols="60" required placeholder="napiši komentar"></textarea>
       <button>Objavi komentar</button>
     </form>
-    <h2>Gotovi napadi</h2>
-    <p>Kopiraj u polje za komentar iznad.</p>
+    <h2> Primjeri napada</h2>
     <ul>${hints}</ul>
     <h2>Komentari</h2>
     <ul>${list || '<li>Još nema komentara.</li>'}</ul>`));
@@ -218,7 +217,6 @@ app.get('/sde', async (req, res) => {
     profile = `
       <p>Korisnik: <b>${esc(u.username)}</b></p>
       <p>Lozinka je spremljena kao: <code>${esc(u.password)}</code></p>
-      <p>To je ${u.protected ? 'scrypt hash sa soli' : '<b class="bad">tvoja prava lozinka, u običnom tekstu</b>'}.</p>`;
   }
 
   let dump = '';
@@ -233,8 +231,7 @@ app.get('/sde', async (req, res) => {
   res.send(page(req, 'Izlaganje osjetljivih podataka', `
     <div class="box"><h2>Moj profil</h2>${profile}</div>
     <div class="box">
-      <h2>Napad: baza je procurila</h2>
-      <p>Zamisli da je napadač dobio kopiju baze. Ovo je sve što bi vidio.</p>
+      <h2>Napad: SDE </h2>
       <form method="get" action="/sde" class="sql">
         <input type="hidden" name="dump" value="1">
         <textarea name="query" rows="2" readonly>SELECT * FROM sec_users</textarea>
