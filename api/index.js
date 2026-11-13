@@ -216,7 +216,7 @@ app.get('/sde', async (req, res) => {
     const u = req.user;
     profile = `
       <p>Korisnik: <b>${esc(u.username)}</b></p>
-      <p>Lozinka je spremljena kao: <code>${esc(u.password)}</code></p>
+      <p>Lozinka je spremljena kao: <code>${esc(u.password)}</code></p>`;
   }
 
   let dump = '';
