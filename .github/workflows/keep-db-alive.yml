@@ -1,0 +1,20 @@
+# Supabase pauses free projects after 7 days without activity.
+# Every request to the app runs a query against the database, so hitting the
+# home page once a day keeps the project awake. The job fails (and GitHub
+# sends an email) if the app returns an error, e.g. when the DB is paused.
+name: Keep Supabase DB alive
+
+on:
+  schedule:
+    - cron: "0 6 * * *" # every day at 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping the app (runs a DB query)
+        run: |
+          curl --fail --silent --show-error --retry 3 --retry-delay 15 \
+            --output /dev/null --write-out "HTTP %{http_code}\n" \
+            https://web2-security-five.vercel.app/
